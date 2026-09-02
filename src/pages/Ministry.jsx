@@ -2,12 +2,11 @@ import { useState } from "react";
 import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import MembersBanner from "../components/MembersBanner";
-import MembersTable from "../components/MembersTable";
+import AddMinistryButton from "../components/AddMinistryButton";
+import MinistryCards from "../components/MinistryCards";
 
-
-function Members(){
+function Ministry(){
     const [searchName, setSearchName] = useState("")
-    const [searchGender, setSearchGender] = useState("")
 
     return (
         <div style={{ display: "flex" }}>
@@ -16,12 +15,16 @@ function Members(){
                 <Navbar />
                 <div style={{ padding: "24px" }}>
                     <MembersBanner />
-                    <MembersTable/>
-                    
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+                        <h2 style={{ margin: 0 }}>Ministries</h2>
+                        <AddMinistryButton />
+                    </div>
+                    <MinistryCards />
+
                 </div>
-                
+
             </div>
         </div>
     )
 }
-export default Members;
+export default Ministry;

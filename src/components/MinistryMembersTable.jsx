@@ -1,13 +1,24 @@
 import { useState } from "react"
+import { members as allMembers } from "../data/members"
 import AddMemberModal from "./AddMemberModal"
-import { members } from "../data/members"
+import RemoveMemberModal from "./RemoveMemberModal"
 
-function MembersTable() {
+function MinistryMembersTable({ ministryName }) {
+    const [removedIds, setRemovedIds] = useState([])
+    const members = allMembers.filter((m) => m.ministry === ministryName && !removedIds.includes(m.id))
+
     const [page, setPage] = useState(1)
     const [selectedAll, setSelectedAll] = useState(false)
     const [selected, setSelected] = useState([])
     const [openMenu, setOpenMenu] = useState(null)
     const [showModal, setShowModal] = useState(false)
+    const [memberToRemove, setMemberToRemove] = useState(null)
+
+    function handleConfirmRemove() {
+        setRemovedIds([...removedIds, memberToRemove.id])
+        setSelected(selected.filter((id) => id !== memberToRemove.id))
+        setMemberToRemove(null)
+    }
 
     function toggleAll() {
         if (selectedAll) {
@@ -28,22 +39,21 @@ function MembersTable() {
 
     return (
         <div style={{ background: "white", borderRadius: "12px", padding: "24px", border: "1px solid #eee" }}>
-            
+
             {/* Header */}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                <h2 style={{ margin: 0 }}>Members</h2>
-                <button 
-                onClick={()=> setShowModal(true)}
-                
-                style={{
-                    background: "#7c3aed",
-                    color: "white",
-                    border: "none",
-                    padding: "10px 16px",
-                    borderRadius: "8px",
-                    cursor: "pointer",
-                    fontSize: "14px"
-                }}>
+                <h2 style={{ margin: 0 }}>{ministryName} Member{members.length !== 1 ? "s" : ""}</h2>
+                <button
+                    onClick={() => setShowModal(true)}
+                    style={{
+                        background: "#7c3aed",
+                        color: "white",
+                        border: "none",
+                        padding: "10px 16px",
+                        borderRadius: "8px",
+                        cursor: "pointer",
+                        fontSize: "14px"
+                    }}>
                     + Add Member
                 </button>
             </div>
@@ -53,35 +63,40 @@ function MembersTable() {
                 <thead>
                     <tr style={{ borderBottom: "1px solid #eee", color: "#888" }}>
                         <th style={{ padding: "10px 0", width: "40px" }}>
-                            <input 
-                                type="checkbox" 
+                            <input
+                                type="checkbox"
                                 checked={selectedAll}
                                 onChange={toggleAll}
                             />
                         </th>
                         <th style={{ textAlign: "left", padding: "10px 0" }}>Name</th>
-                        <th style={{ textAlign: "left", padding: "10px 0" }}>Role</th>
-                        <th style={{ textAlign: "left", padding: "10px 0" }}>Ministry</th>
+                        <th style={{ textAlign: "left", padding: "10px 0" }}>Start Date</th>
                         <th style={{ textAlign: "left", padding: "10px 0" }}>Gender</th>
+                        <th style={{ textAlign: "left", padding: "10px 0" }}>Date Of Birth</th>
                         <th style={{ textAlign: "left", padding: "10px 0" }}>Actions</th>
-                        <th style={{ textAlign: "left", padding: "10px 0" }}>Date of Birth</th>
-                        <th style={{ textAlign: "left", padding: "10px 0" }}>Start date</th>
-                         
                     </tr>
                 </thead>
                 <tbody>
+                    {members.length === 0 && (
+                        <tr>
+                            <td colSpan={6} style={{ padding: "24px 0", textAlign: "center", color: "#888" }}>
+                                No members in this ministry yet.
+                            </td>
+                        </tr>
+                    )}
+
                     {members.map((member) => (
                         <tr key={member.id} style={{ borderBottom: "1px solid #f5f5f5" }}>
 
-                             {/* Row checkbox */}
+                            {/* Row checkbox */}
                             <td style={{ padding: "12px 0" }}>
-                                <input 
+                                <input
                                     type="checkbox"
                                     checked={selected.includes(member.id)}
                                     onChange={() => toggleOne(member.id)}
                                 />
                             </td>
-                            
+
                             {/* Name + Avatar */}
                             <td style={{ padding: "12px 0", display: "flex", alignItems: "center", gap: "10px" }}>
                                 <div style={{
@@ -97,7 +112,6 @@ function MembersTable() {
                                 </div>
                             </td>
 
-                            <td style={{ padding: "12px 0" }}>{member.role}</td>
                             <td style={{ padding: "12px 0" }}>{member.joined}</td>
 
                             {/* Gender Badge */}
@@ -113,7 +127,9 @@ function MembersTable() {
                                 </span>
                             </td>
 
-                                 {/* Actions */}
+                            <td style={{ padding: "12px 0" }}>{member.dob}</td>
+
+                            {/* Actions */}
                             <td style={{ padding: "12px 0", position: "relative" }}>
                                 <span
                                     onClick={() => setOpenMenu(openMenu === member.id ? null : member.id)}
@@ -137,28 +153,20 @@ function MembersTable() {
                                         boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
                                     }}>
                                         <p
-                                            onClick={() => { alert("Assign Role clicked") }}
+                                            onClick={() => { alert("View clicked") }}
                                             style={{ margin: 0, padding: "10px 16px", cursor: "pointer", fontSize: "14px" }}
                                             onMouseEnter={e => e.target.style.background = "#f5f5f5"}
                                             onMouseLeave={e => e.target.style.background = "white"}
                                         >
-                                            Assign Role
+                                            View
                                         </p>
                                         <p
-                                            onClick={() => { alert("Add to Ministry clicked") }}
-                                            style={{ margin: 0, padding: "10px 16px", cursor: "pointer", fontSize: "14px" }}
-                                            onMouseEnter={e => e.target.style.background = "#f5f5f5"}
-                                            onMouseLeave={e => e.target.style.background = "white"}
-                                        >
-                                            Add to Ministry
-                                        </p>
-                                        <p
-                                            onClick={() => { alert("Deactivate clicked") }}
+                                            onClick={() => { setMemberToRemove(member); setOpenMenu(null) }}
                                             style={{ margin: 0, padding: "10px 16px", cursor: "pointer", fontSize: "14px", color: "red" }}
                                             onMouseEnter={e => e.target.style.background = "#fff5f5"}
                                             onMouseLeave={e => e.target.style.background = "white"}
                                         >
-                                            Deactivate
+                                            Remove Member
                                         </p>
                                     </div>
                                 )}
@@ -170,9 +178,9 @@ function MembersTable() {
 
             {/* Pagination */}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "16px", fontSize: "14px" }}>
-                <span style={{ color: "#888" }}>Showing 1-10 of 1000</span>
+                <span style={{ color: "#888" }}>Showing {members.length === 0 ? 0 : 1}-{members.length} of {members.length}</span>
                 <div style={{ display: "flex", gap: "8px" }}>
-                    {[1,2,3,4,5].map((p) => (
+                    {[1].map((p) => (
                         <button
                             key={p}
                             onClick={() => setPage(p)}
@@ -190,8 +198,15 @@ function MembersTable() {
             </div>
             {showModal && <AddMemberModal onClose={() => setShowModal(false)} />}
 
+            {memberToRemove && (
+                <RemoveMemberModal
+                    onConfirm={handleConfirmRemove}
+                    onCancel={() => setMemberToRemove(null)}
+                />
+            )}
+
         </div>
     )
 }
 
-export default MembersTable
+export default MinistryMembersTable
