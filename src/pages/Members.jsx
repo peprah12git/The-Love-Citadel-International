@@ -3,23 +3,21 @@ import Sidebar from "../components/Sidebar";
 import Navbar from "../components/Navbar";
 import MembersBanner from "../components/MembersBanner";
 import MembersTable from "../components/MembersTable";
-
+import styles from "../styles/common.module.css"
 
 function Members(){
     const [searchName, setSearchName] = useState("")
     const [searchGender, setSearchGender] = useState("")
 
     return (
-        <div style={{ display: "flex" }}>
+        <div className={styles.pageShell}>
             <Sidebar />
-            <div style={{ flex: 1 }}>
+            <div className={styles.pageMain}>
                 <Navbar />
-                <div style={{ padding: "24px" }}>
+                <div className={styles.pageContent}>
                     <MembersBanner />
                     <MembersTable/>
-                    
                 </div>
-                
             </div>
         </div>
     )

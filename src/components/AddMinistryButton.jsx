@@ -1,23 +1,13 @@
 import { useState } from "react"
 import AddMinistryModal from "./AddMinistryModal"
+import styles from "../styles/common.module.css"
 
 function AddMinistryButton() {
     const [showModal, setShowModal] = useState(false)
 
     return (
         <>
-            <button
-                onClick={() => setShowModal(true)}
-                style={{
-                    background: "#7c3aed",
-                    color: "white",
-                    border: "none",
-                    padding: "10px 16px",
-                    borderRadius: "8px",
-                    cursor: "pointer",
-                    fontSize: "14px"
-                }}
-            >
+            <button onClick={() => setShowModal(true)} className={styles.btnPrimary}>
                 + Add Ministry
             </button>
 

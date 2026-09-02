@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { FaPeopleGroup } from "react-icons/fa6"
 import { FaUser, FaAlignLeft } from "react-icons/fa"
+import styles from "../styles/common.module.css"
+import localStyles from "./AddMinistryModal.module.css"
 
 function AddMinistryModal({ onClose }) {
     const [formData, setFormData] = useState({
@@ -19,117 +21,78 @@ function AddMinistryModal({ onClose }) {
     }
 
     return (
-        <div style={{
-            position: "fixed",
-            top: 0, left: 0, right: 0, bottom: 0,
-            background: "rgba(0,0,0,0.5)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 1000,
-        }}>
+        <div className={styles.modalOverlay}>
 
-            <div style={{
-                background: "white",
-                borderRadius: "16px",
-                padding: "32px",
-                width: "420px",
-                boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
-            }}>
+            <div className={styles.modalBox}>
 
                 {/* Header */}
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
-                    <h2 style={{ margin: 0, fontSize: "18px", fontWeight: "600" }}>Add Ministry</h2>
-                    <span
-                        onClick={onClose}
-                        style={{ cursor: "pointer", fontSize: "18px", color: "#888" }}
-                    >
+                <div className={styles.modalHeader}>
+                    <h2 className={styles.modalTitle}>Add Ministry</h2>
+                    <span onClick={onClose} className={styles.modalClose}>
                         ✕
                     </span>
                 </div>
 
                 {/* Ministry Name */}
-                <div style={{ marginBottom: "16px" }}>
-                    <label style={{ fontSize: "14px", fontWeight: "500", display: "block", marginBottom: "6px" }}>
+                <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>
                         Ministry Name
                     </label>
-                    <div style={{ display: "flex", alignItems: "center", border: "1px solid #eee", borderRadius: "8px", padding: "10px 14px", gap: "10px", background: "#f9f9f9" }}>
-                        <FaPeopleGroup style={{ color: "#aaa" }} />
+                    <div className={styles.inputWrap}>
+                        <FaPeopleGroup className={styles.inputIcon} />
                         <input
                             type="text"
                             name="name"
                             placeholder="e.g Choir"
                             value={formData.name}
                             onChange={handleChange}
-                            style={{ border: "none", outline: "none", fontSize: "14px", background: "transparent", width: "100%" }}
+                            className={styles.inputField}
                         />
                     </div>
                 </div>
 
                 {/* Leader */}
-                <div style={{ marginBottom: "16px" }}>
-                    <label style={{ fontSize: "14px", fontWeight: "500", display: "block", marginBottom: "6px" }}>
+                <div className={styles.formGroup}>
+                    <label className={styles.formLabel}>
                         Leader
                     </label>
-                    <div style={{ display: "flex", alignItems: "center", border: "1px solid #eee", borderRadius: "8px", padding: "10px 14px", gap: "10px", background: "#f9f9f9" }}>
-                        <FaUser style={{ color: "#aaa" }} />
+                    <div className={styles.inputWrap}>
+                        <FaUser className={styles.inputIcon} />
                         <input
                             type="text"
                             name="leader"
                             placeholder="e.g Mark Osel"
                             value={formData.leader}
                             onChange={handleChange}
-                            style={{ border: "none", outline: "none", fontSize: "14px", background: "transparent", width: "100%" }}
+                            className={styles.inputField}
                         />
                     </div>
                 </div>
 
                 {/* Description */}
-                <div style={{ marginBottom: "24px" }}>
-                    <label style={{ fontSize: "14px", fontWeight: "500", display: "block", marginBottom: "6px" }}>
+                <div className={localStyles.descriptionGroup}>
+                    <label className={styles.formLabel}>
                         Description
                     </label>
-                    <div style={{ display: "flex", alignItems: "flex-start", border: "1px solid #eee", borderRadius: "8px", padding: "10px 14px", gap: "10px", background: "#f9f9f9" }}>
-                        <FaAlignLeft style={{ color: "#aaa", marginTop: "3px" }} />
+                    <div className={localStyles.textareaWrap}>
+                        <FaAlignLeft className={localStyles.textareaIcon} />
                         <textarea
                             name="description"
                             placeholder="What does this ministry do?"
                             value={formData.description}
                             onChange={handleChange}
                             rows={3}
-                            style={{ border: "none", outline: "none", fontSize: "14px", background: "transparent", width: "100%", resize: "none", fontFamily: "inherit" }}
+                            className={localStyles.textareaField}
                         />
                     </div>
                 </div>
 
                 {/* Buttons */}
-                <div style={{ display: "flex", gap: "12px" }}>
-                    <button
-                        onClick={handleSubmit}
-                        style={{
-                            padding: "10px 24px",
-                            borderRadius: "8px",
-                            border: "none",
-                            background: "#7c3aed",
-                            color: "white",
-                            cursor: "pointer",
-                            fontSize: "14px",
-                            fontWeight: "500"
-                        }}
-                    >
+                <div className={styles.modalActions}>
+                    <button onClick={handleSubmit} className={styles.btnSubmit}>
                         Save
                     </button>
-                    <button
-                        onClick={onClose}
-                        style={{
-                            padding: "10px 24px",
-                            borderRadius: "8px",
-                            border: "1px solid #ddd",
-                            background: "white",
-                            cursor: "pointer",
-                            fontSize: "14px"
-                        }}
-                    >
+                    <button onClick={onClose} className={styles.btnSecondary}>
                         Cancel
                     </button>
                 </div>

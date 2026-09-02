@@ -4,6 +4,7 @@ import { IoIosNotifications } from "react-icons/io"
 import { GrGallery } from "react-icons/gr"
 import ChurchLogo from "./ChurchLogo.jsx"
 import { useNavigate, useLocation } from "react-router-dom"
+import styles from "./Sidebar.module.css"
 
 function Sidebar(){
     const navigate = useNavigate()
@@ -20,43 +21,22 @@ function Sidebar(){
     const isActive = (path) => location.pathname === path
 
     return (
-        <div style={{ width:"288px", height:"100vh",  background:"#ffffff",color:"#1e1e2d", padding:"20px", display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
-            
+        <div className={styles.sidebar}>
+
             <div>
                 <ChurchLogo/>
-                <ul style={{ listStyle: "none", padding: 0 }}>
+                <ul className={styles.menu}>
                     {menuItems.map((item) => (
                         <li
                             key={item.name}
                             onClick={() => navigate(item.path)}
-                            style={{
-                                marginBottom: "8px",
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "10px",
-                                padding: "10px 14px",
-                                borderRadius: "8px",
-                                cursor: "pointer",
-                                justifyContent: "space-between",
-                                background: isActive(item.path) ? "#ede9fe" : "transparent",
-                                color: isActive(item.path) ? "#7c3aed" : "#1e1e2d",
-                            }}
+                            className={`${styles.navItem} ${isActive(item.path) ? styles.navItemActive : ""}`}
                         >
-                            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                            <div className={styles.navItemLabel}>
                                 {item.icon} {item.name}
                             </div>
                             {item.badge && (
-                                <span style={{
-                                    background: "#a78bfa",
-                                    color: "white",
-                                    borderRadius: "50%",
-                                    width: "20px",
-                                    height: "20px",
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    fontSize: "11px"
-                                }}>
+                                <span className={styles.badge}>
                                     {item.badge}
                                 </span>
                             )}
@@ -66,18 +46,7 @@ function Sidebar(){
             </div>
 
             {/* Settings at the bottom */}
-            <li
-                style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "10px",
-                    padding: "10px 14px",
-                    borderRadius: "8px",
-                    cursor: "pointer",
-                    listStyle: "none",
-                    color: "white"
-                }}
-            >
+            <li className={styles.settings}>
                 <FaCog /> Settings
             </li>
 

@@ -4,6 +4,8 @@ import Navbar from "../components/Navbar"
 import MembersBanner from "../components/MembersBanner"
 import MinistryMembersTable from "../components/MinistryMembersTable"
 import { ministries } from "../data/ministries"
+import common from "../styles/common.module.css"
+import styles from "./MinistryDetails.module.css"
 
 function MinistryDetails() {
     const { id } = useParams()
@@ -12,24 +14,13 @@ function MinistryDetails() {
 
     if (!ministry) {
         return (
-            <div style={{ display: "flex" }}>
+            <div className={common.pageShell}>
                 <Sidebar />
-                <div style={{ flex: 1 }}>
+                <div className={common.pageMain}>
                     <Navbar />
-                    <div style={{ padding: "24px" }}>
+                    <div className={common.pageContent}>
                         <p>Ministry not found.</p>
-                        <button
-                            onClick={() => navigate("/ministries")}
-                            style={{
-                                background: "#7c3aed",
-                                color: "white",
-                                border: "none",
-                                padding: "10px 16px",
-                                borderRadius: "8px",
-                                cursor: "pointer",
-                                fontSize: "14px"
-                            }}
-                        >
+                        <button onClick={() => navigate("/ministries")} className={common.btnPrimary}>
                             ← Back to Ministries
                         </button>
                     </div>
@@ -39,15 +30,12 @@ function MinistryDetails() {
     }
 
     return (
-        <div style={{ display: "flex" }}>
+        <div className={common.pageShell}>
             <Sidebar />
-            <div style={{ flex: 1 }}>
+            <div className={common.pageMain}>
                 <Navbar />
-                <div style={{ padding: "24px" }}>
-                    <span
-                        onClick={() => navigate("/ministries")}
-                        style={{ cursor: "pointer", color: "#7c3aed", fontSize: "14px", display: "inline-block", marginBottom: "16px" }}
-                    >
+                <div className={common.pageContent}>
+                    <span onClick={() => navigate("/ministries")} className={styles.backLink}>
                         ← Back to Ministries
                     </span>
 

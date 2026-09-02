@@ -1,0 +1,24 @@
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.image {
+    width: 48px;
+    height: 48px;
+}
+
+.name {
+    margin: 0;
+    color: #1e1e2d;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.tagline {
+    font-size: 12px;
+    color: #1e1e2d;
+    font-weight: bold;
+}

@@ -1,13 +1,10 @@
 import MinistryCard from "./MinistryCard"
 import { ministries } from "../data/ministries"
+import styles from "./MinistryCards.module.css"
 
 function MinistryCards() {
     return (
-        <div style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "16px",
-        }}>
+        <div className={styles.grid}>
             {ministries.map((ministry) => (
                 <MinistryCard key={ministry.id} ministry={ministry} />
             ))}

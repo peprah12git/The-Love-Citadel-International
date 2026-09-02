@@ -1,0 +1,328 @@
+/* Shared primitives reused across pages/components.
+   Import what you need and `composes` from it in a component's own module. */
+
+/* Page shell (Sidebar + main content area) */
+.pageShell {
+    display: flex;
+}
+
+.pageMain {
+    flex: 1;
+}
+
+.pageContent {
+    padding: 24px;
+}
+
+.pageHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+/* Buttons */
+.btnPrimary {
+    background: #7c3aed;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btnSecondary {
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: white;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btnSubmit {
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    background: #7c3aed;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btnDanger {
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    background: #dc2626;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Cards / panels */
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #eee;
+}
+
+/* Tables */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.theadRow {
+    border-bottom: 1px solid #eee;
+    color: #888;
+}
+
+.th {
+    text-align: left;
+    padding: 10px 0;
+}
+
+.thCheckbox {
+    padding: 10px 0;
+    width: 40px;
+}
+
+.tr {
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.td {
+    padding: 12px 0;
+}
+
+.tdRelative {
+    padding: 12px 0;
+    position: relative;
+}
+
+.nameCell {
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #e0e7ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    color: #7c3aed;
+}
+
+.badge {
+    background: #ede9fe;
+    color: #7c3aed;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.actionsTrigger {
+    cursor: pointer;
+    font-size: 18px;
+    padding: 4px 8px;
+}
+
+.dropdownMenu {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 8px 0;
+    z-index: 100;
+    min-width: 160px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.dropdownItem {
+    margin: 0;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.dropdownItem:hover {
+    background: #f5f5f5;
+}
+
+.dropdownItemDanger {
+    composes: dropdownItem;
+    color: red;
+}
+
+.dropdownItemDanger:hover {
+    background: #fff5f5;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+.pageNumbers {
+    display: flex;
+    gap: 8px;
+}
+
+.pageBtn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid #eee;
+    cursor: pointer;
+    background: white;
+    color: #333;
+}
+
+.pageBtnActive {
+    composes: pageBtn;
+    background: #7c3aed;
+    color: white;
+}
+
+/* Modals */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modalBox {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    width: 420px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.modalTitle {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.modalClose {
+    cursor: pointer;
+    font-size: 18px;
+    color: #888;
+}
+
+/* Forms */
+.formGroup {
+    margin-bottom: 16px;
+}
+
+.formLabel {
+    font-size: 14px;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.inputWrap {
+    display: flex;
+    align-items: center;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px 14px;
+    gap: 10px;
+    background: #f9f9f9;
+}
+
+.inputIcon {
+    color: #aaa;
+}
+
+.inputField {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    background: transparent;
+    width: 100%;
+}
+
+.selectField {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    font-size: 14px;
+    outline: none;
+    background: #f9f9f9;
+    box-sizing: border-box;
+}
+
+.formRow {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.formRowItem {
+    flex: 1;
+}
+
+.modalActions {
+    display: flex;
+    gap: 12px;
+}
+
+/* Small reused text utilities */
+.headingNoMargin {
+    margin: 0;
+}
+
+.muted {
+    margin: 0;
+    color: #888;
+}
+
+.mutedSmall {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+}
+
+.nameText {
+    margin: 0;
+    font-weight: 500;
+}
+
+.emptyCell {
+    padding: 24px 0;
+    text-align: center;
+    color: #888;
+}

@@ -1,0 +1,85 @@
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #eee;
+    cursor: pointer;
+}
+
+.topRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.iconWrap {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.memberCount {
+    background: #f5f5f5;
+    color: #666;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.name {
+    margin: 0 0 6px 0;
+    font-size: 16px;
+}
+
+.rehearsal {
+    margin: 0 0 16px 0;
+    font-size: 13px;
+    color: #888;
+}
+
+.leadRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.leadInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.leadAvatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #e0e7ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 13px;
+    color: #7c3aed;
+}
+
+.leadName {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.leadRole {
+    margin: 0;
+    font-size: 12px;
+    color: #888;
+}
+
+.arrow {
+    color: #aaa;
+    font-size: 16px;
+}

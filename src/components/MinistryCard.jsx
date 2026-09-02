@@ -1,64 +1,43 @@
 import { useNavigate } from "react-router-dom"
+import styles from "./MinistryCard.module.css"
 
 function MinistryCard({ ministry }) {
     const { id, icon, iconBg, iconColor, name, members, rehearsal, lead, leadRole } = ministry
     const navigate = useNavigate()
 
     return (
-        <div
-            onClick={() => navigate(`/ministries/${id}`)}
-            style={{
-                background: "white",
-                borderRadius: "12px",
-                padding: "20px",
-                border: "1px solid #eee",
-                cursor: "pointer",
-            }}
-        >
+        <div onClick={() => navigate(`/ministries/${id}`)} className={styles.card}>
             {/* Icon + Members count */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                <div style={{
-                    width: "36px", height: "36px", borderRadius: "8px",
-                    background: iconBg, display: "flex", alignItems: "center",
-                    justifyContent: "center", color: iconColor, fontSize: "16px"
-                }}>
+            <div className={styles.topRow}>
+                {/* iconBg/iconColor come from data, so they stay inline */}
+                <div className={styles.iconWrap} style={{ background: iconBg, color: iconColor }}>
                     {icon}
                 </div>
-                <span style={{
-                    background: "#f5f5f5",
-                    color: "#666",
-                    padding: "4px 10px",
-                    borderRadius: "20px",
-                    fontSize: "12px"
-                }}>
+                <span className={styles.memberCount}>
                     {members} Members
                 </span>
             </div>
 
             {/* Name */}
-            <h3 style={{ margin: "0 0 6px 0", fontSize: "16px" }}>{name}</h3>
+            <h3 className={styles.name}>{name}</h3>
 
             {/* Rehearsal */}
-            <p style={{ margin: "0 0 16px 0", fontSize: "13px", color: "#888" }}>
+            <p className={styles.rehearsal}>
                 Rehearsal: {rehearsal}
             </p>
 
             {/* Ministry Lead */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                    <div style={{
-                        width: "32px", height: "32px", borderRadius: "50%",
-                        background: "#e0e7ff", display: "flex", alignItems: "center",
-                        justifyContent: "center", fontWeight: "500", fontSize: "13px", color: "#7c3aed"
-                    }}>
+            <div className={styles.leadRow}>
+                <div className={styles.leadInfo}>
+                    <div className={styles.leadAvatar}>
                         {lead.charAt(0)}
                     </div>
                     <div>
-                        <p style={{ margin: 0, fontSize: "13px", fontWeight: "500" }}>{lead}</p>
-                        <p style={{ margin: 0, fontSize: "12px", color: "#888" }}>{leadRole}</p>
+                        <p className={styles.leadName}>{lead}</p>
+                        <p className={styles.leadRole}>{leadRole}</p>
                     </div>
                 </div>
-                <span style={{ color: "#aaa", fontSize: "16px" }}>→</span>
+                <span className={styles.arrow}>→</span>
             </div>
         </div>
     )

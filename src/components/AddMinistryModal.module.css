@@ -1,0 +1,20 @@
+.descriptionGroup {
+    composes: formGroup from "../styles/common.module.css";
+    margin-bottom: 24px;
+}
+
+.textareaWrap {
+    composes: inputWrap from "../styles/common.module.css";
+    align-items: flex-start;
+}
+
+.textareaIcon {
+    composes: inputIcon from "../styles/common.module.css";
+    margin-top: 3px;
+}
+
+.textareaField {
+    composes: inputField from "../styles/common.module.css";
+    resize: none;
+    font-family: inherit;
+}

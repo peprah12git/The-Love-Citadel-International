@@ -1,0 +1,39 @@
+.modalBox {
+    composes: modalBox from "../styles/common.module.css";
+    width: 360px;
+    position: relative;
+    text-align: center;
+}
+
+.closeIcon {
+    composes: modalClose from "../styles/common.module.css";
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
+.warningIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #dc2626;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: #dc2626;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.message {
+    margin: 0 0 24px 0;
+    font-size: 15px;
+    color: #333;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
