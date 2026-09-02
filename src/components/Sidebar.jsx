@@ -3,18 +3,21 @@ import { FaPeopleGroup } from "react-icons/fa6"
 import { IoIosNotifications } from "react-icons/io"
 import { GrGallery } from "react-icons/gr"
 import ChurchLogo from "./ChurchLogo.jsx"
-import { useState } from "react"
+import { useNavigate, useLocation } from "react-router-dom"
 
 function Sidebar(){
-    const [active, setActive] = useState("Dashboard")
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const menuItems = [
-        { name: "Dashboard", icon: <FaChartPie /> },
-        { name: "Members", icon: <FaUsers /> },
-        { name: "Ministries", icon: <FaPeopleGroup /> },
-        { name: "Gallery", icon: <GrGallery /> },
-        { name: "Notifications", icon: <IoIosNotifications />, badge: 1 },
+        { name: "Dashboard", icon: <FaChartPie />, path: "/" },
+        { name: "Members", icon: <FaUsers />, path: "/members" },
+        { name: "Ministries", icon: <FaPeopleGroup />, path: "/ministries" },
+        { name: "Gallery", icon: <GrGallery />, path: "/gallery" },
+        { name: "Notifications", icon: <IoIosNotifications />, badge: 1, path: "/notifications" },
     ]
+
+    const isActive = (path) => location.pathname === path
 
     return (
         <div style={{ width:"288px", height:"100vh",  background:"#ffffff",color:"#1e1e2d", padding:"20px", display:"flex", flexDirection:"column", justifyContent:"space-between" }}>
@@ -25,7 +28,7 @@ function Sidebar(){
                     {menuItems.map((item) => (
                         <li
                             key={item.name}
-                            onClick={() => setActive(item.name)}
+                            onClick={() => navigate(item.path)}
                             style={{
                                 marginBottom: "8px",
                                 display: "flex",
@@ -35,8 +38,8 @@ function Sidebar(){
                                 borderRadius: "8px",
                                 cursor: "pointer",
                                 justifyContent: "space-between",
-                                background: active === item.name ? "#ede9fe" : "transparent",
-                                color: active === item.name ? "#7c3aed" : "#1e1e2d",
+                                background: isActive(item.path) ? "#ede9fe" : "transparent",
+                                color: isActive(item.path) ? "#7c3aed" : "#1e1e2d",
                             }}
                         >
                             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
