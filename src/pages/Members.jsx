@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import MembersBanner from "../components/MembersBanner";
 import MembersTable from "../components/MembersTable";
 
+
 function Members(){
     const [searchName, setSearchName] = useState("")
     const [searchGender, setSearchGender] = useState("")
@@ -16,6 +17,7 @@ function Members(){
                 <div style={{ padding: "24px" }}>
                     <MembersBanner />
                     <MembersTable/>
+                    
                 </div>
                 
             </div>

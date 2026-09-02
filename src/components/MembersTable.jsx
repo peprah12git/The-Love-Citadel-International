@@ -1,23 +1,13 @@
 import { useState } from "react"
-
-const members = [
-    { id: 1, name: "Emmanuel Peprah", email: "emmanuel@tlc.com", role: "Member", ministry: "Usher", joined: "2 Jan 2026", gender: "Males", dob: "15 Mar 2000" },
-    { id: 2, name: "Ama Owusu", email: "ama@tlc.com", role: "Member", ministry: "Choir", joined: "5 Jan 2026", gender: "Females", dob: "20 Apr 2001" },
-    { id: 3, name: "Kofi Mensah", email: "kofi@tlc.com", role: "Elder", ministry: "Ushering", joined: "10 Jan 2026", gender: "Males", dob: "12 Jun 1990" },
-    { id: 4, name: "Abena Asante", email: "abena@tlc.com", role: "Member", ministry: "Media", joined: "15 Jan 2026", gender: "Females", dob: "8 Aug 1998" },
-    { id: 5, name: "Kwame Boateng", email: "kwame@tlc.com", role: "Deacon", ministry: "Prayer", joined: "20 Jan 2026", gender: "Males", dob: "3 Feb 1985" },
-    { id: 6, name: "Akosua Darko", email: "akosua@tlc.com", role: "Member", ministry: "Choir", joined: "25 Jan 2026", gender: "Females", dob: "17 Nov 2000" },
-    { id: 7, name: "Yaw Adjei", email: "yaw@tlc.com", role: "Member", ministry: "Ushering", joined: "1 Feb 2026", gender: "Males", dob: "22 Sep 1995" },
-    { id: 8, name: "Efua Sarpong", email: "efua@tlc.com", role: "Member", ministry: "Media", joined: "3 Feb 2026", gender: "Females", dob: "5 Jan 2002" },
-    { id: 9, name: "Kweku Acheampong", email: "kweku@tlc.com", role: "Elder", ministry: "Prayer", joined: "7 Feb 2026", gender: "Males", dob: "30 Jul 1980" },
-    { id: 10, name: "Adwoa Frimpong", email: "adwoa@tlc.com", role: "Member", ministry: "Choir", joined: "10 Feb 2026", gender: "Females", dob: "14 Dec 1999" },
-]
+import AddMemberModal from "./AddMemberModal"
+import { members } from "../data/members"
 
 function MembersTable() {
     const [page, setPage] = useState(1)
     const [selectedAll, setSelectedAll] = useState(false)
     const [selected, setSelected] = useState([])
     const [openMenu, setOpenMenu] = useState(null)
+    const [showModal, setShowModal] = useState(false)
 
     function toggleAll() {
         if (selectedAll) {
@@ -42,7 +32,10 @@ function MembersTable() {
             {/* Header */}
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
                 <h2 style={{ margin: 0 }}>Members</h2>
-                <button style={{
+                <button 
+                onClick={()=> setShowModal(true)}
+                
+                style={{
                     background: "#7c3aed",
                     color: "white",
                     border: "none",
@@ -195,6 +188,7 @@ function MembersTable() {
                     ))}
                 </div>
             </div>
+            {showModal && <AddMemberModal onClose={() => setShowModal(false)} />}
 
         </div>
     )
