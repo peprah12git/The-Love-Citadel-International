@@ -9,6 +9,12 @@ function MembersBanner() {
             marginBottom: "24px",
             height: "200px",
         }}>
+            <style>{`
+                .banner-search-input::placeholder {
+                    color: #ffffff;
+                    opacity: 0.85;
+                }
+            `}</style>
             {/* Background Image */}
             <img
                 src={bannerImage}
@@ -47,6 +53,7 @@ function MembersBanner() {
                     <input
                         type="text"
                         placeholder="Search by name..."
+                        className="banner-search-input"
                         style={{
                             flex: 1,
                             padding: "10px 16px",
@@ -60,14 +67,22 @@ function MembersBanner() {
                     />
                     <select
                         style={{
-                            padding: "10px 16px",
+                            padding: "10px 36px 10px 16px",
+                            minWidth: "160px",
                             borderRadius: "8px",
                             border: "none",
                             fontSize: "14px",
                             outline: "none",
                             cursor: "pointer",
-                            background: "rgba(255,255,255,0.2)",
+                            backgroundColor: "rgba(255,255,255,0.2)",
                             color: "white",
+                            appearance: "none",
+                            WebkitAppearance: "none",
+                            MozAppearance: "none",
+                            backgroundImage: "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E\")",
+                            backgroundRepeat: "no-repeat",
+                            backgroundPosition: "right 14px center",
+                            backgroundSize: "12px",
                         }}
                     >
                         <option value="">All Genders</option>
