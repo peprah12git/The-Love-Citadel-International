@@ -1,0 +1,119 @@
+---
+name: commit-msg
+description: Generate clear, conventional Git commit messages for React and frontend projects. Use this skill whenever the user asks to "generate a commit message", "write a commit", "commit my changes", "what should my commit say", or pastes a git diff or list of changed files. Also trigger when the user says things like "I just added X feature" or "I fixed X bug" and wants to commit. Always use this skill for commit message generation — never write a bare one-liner without following the conventional commit format.
+---
+
+# Commit Message Skill
+
+Generate well-structured Git commit messages following the **Conventional Commits** standard.
+
+---
+
+## Conventional Commits Format
+
+```
+<type>(<scope>): <short summary>
+
+<optional body>
+
+<optional footer>
+```
+
+---
+
+## Types
+
+| Type | When to use |
+|---|---|
+| `feat` | A new feature or component |
+| `fix` | A bug fix |
+| `style` | UI/CSS changes, no logic change |
+| `refactor` | Code restructure, no feature or fix |
+| `chore` | Setup, config, dependencies |
+| `docs` | Documentation changes |
+| `perf` | Performance improvement |
+| `test` | Adding or fixing tests |
+
+---
+
+## Scope (for React/frontend projects)
+
+Use the component or page name as the scope:
+
+- `feat(Sidebar):`
+- `fix(MembersTable):`
+- `style(Navbar):`
+- `feat(AddMemberModal):`
+- `chore(deps):`
+
+---
+
+## Rules
+
+1. Summary line: max 72 characters, imperative mood ("add", not "added")
+2. No period at the end of the summary line
+3. Body: explain WHAT and WHY, not HOW
+4. One commit per logical change
+
+---
+
+## How to generate
+
+### If the user pastes a `git diff` or file list:
+1. Read the changes carefully
+2. Identify the type and scope
+3. Summarize what changed in imperative mood
+4. Add a body if the change is non-trivial
+
+### If the user describes what they did:
+1. Map their description to the correct type
+2. Identify which component/page was affected (scope)
+3. Generate the message
+
+---
+
+## Examples
+
+**Adding a new component:**
+```
+feat(MembersBanner): add hero banner with church image and search filters
+```
+
+**Fixing a bug:**
+```
+fix(AddMemberModal): wire up onClose prop to close button and cancel button
+```
+
+**Styling change:**
+```
+style(Sidebar): update background to white and adjust text colors for contrast
+```
+
+**Adding dummy data:**
+```
+chore(MembersTable): add Ghanaian dummy member data for UI development
+```
+
+**Multiple related changes:**
+```
+feat(Members): build members page with banner, table, and add member modal
+
+- Add MembersBanner component with image overlay and search inputs
+- Add MembersTable with checkboxes, gender badge, and pagination
+- Add AddMemberModal form with name, email, DOB, gender, role, ministry
+- Wire up showModal state to Add Member button
+```
+
+---
+
+## Output format
+
+Always output:
+1. The commit message in a code block (ready to copy)
+2. A one-line explanation of why you chose that type and scope
+3. The exact git command to run (optional but helpful for beginners)
+
+```bash
+git add .
+git commit -m "feat(MembersTable): add checkbox selection and actions dropdown"
+```
